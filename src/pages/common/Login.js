@@ -15,10 +15,21 @@ const Login = () => {
     setInputPw(e.target.value)
   }
 
-  // login 버튼 클릭 이벤트
+  // login 버튼 클릭 이벤트 
   const onClickLogin = () => {
     console.log('click login')
-  }
+
+    axios.post(
+      "/common/login",
+      {
+        inputId : inputId,
+        inputPw : inputPw
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch();
+  };
 
   // 페이지 렌더링 후 가장 처음 호출되는 함수 주석처리로 차단
   // useEffect(() => {
