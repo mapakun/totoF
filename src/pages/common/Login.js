@@ -1,10 +1,13 @@
 import { useState,useEffect } from "react";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = (props) => {
   const [inputId, setInputId] = useState('')
   const [inputPw, setInputPw] = useState('')
+
+  const navigate = useNavigate();
 
   // input data 의 변화가 있을 때마다 value 값을 변경해서 useState 해준다
   const handleInputId = (e) => {
@@ -28,8 +31,9 @@ const Login = (props) => {
       .then((res) => {
         console.log(res);
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
-        props.loginCallBack(true);
-        props.history.push("/");      //에러수정 및 엑시오스 추상화 생각
+        props.loginCallBack(true,res.data.msg);
+        window.sessionStorage.setItem("userId" , res.data.msg)                      //유저아이디 세션스토리지 저장
+        navigate('/')      //에러수정 및 엑시오스 추상화 생각
       })
       .catch();
   };
