@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Nav(props) {
 
-    let{userNm} = props
+    let{userNm} = props                         //비구조적 할당
 
     return (
         <div>
