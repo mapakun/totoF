@@ -31,8 +31,9 @@ const Login = (props) => {
       .then((res) => {
         console.log(res);
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
-        props.loginCallBack(true,res.data.msg);
-        window.sessionStorage.setItem("userId" , res.data.msg)                      //유저아이디 세션스토리지 저장
+        props.loginCallBack(true,res.data.userId,res.data.userNm);
+        window.sessionStorage.setItem("userId" , res.data.userId);                     //유저아이디 세션스토리지 저장
+        window.sessionStorage.setItem("userNm" , res.data.userNm)
         navigate('/')      //에러수정 및 엑시오스 추상화 생각
       })
       .catch();

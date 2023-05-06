@@ -10,35 +10,44 @@ import { refreshToken } from './utils.js';
 const App = () => {
   const [isLogin , setIsLogin] = useState(false);
   const [userId , setUserId] = useState('');
+  const [userNm , setUserNm] = useState('');
 
-  useEffect(() => {
-    try{
-      refreshToken(refreshTokenCallBack,userId)
-    }catch(e){
-      console.log(e);
-    }
-  },[]);
+  // useEffect(() => {
+  //   try{
+  //     refreshToken(refreshTokenCallBack)
+  //   }catch(e){
+  //     console.log(e);
+  //   }
+  // },[]);
 
-  function loginCallBack(login,userId)
+  function loginCallBack(login,userId,userNm)
   {
     setIsLogin(login);
     setUserId(userId);
+    setUserNm(userNm);
     setTimeout(function(){
-      refreshToken(refreshTokenCallBack,userId);
+      refreshToken(refreshTokenCallBack);
     }, (60 * 1000));
   }
 
-  function refreshTokenCallBack(login,userId)
+  function refreshTokenCallBack(login,userId,userNm)
   {
-    console.log("난몇번?");
     setIsLogin(login);
     setUserId(userId);
+    setUserNm(userNm);
+
+    if(isLogin)                           //로그인 된 상태라면 silentLogin 을 계속 수행한다. 만료시 세션아웃으로 보는 로직 처리 예정.
+    {
+      setTimeout(function(){
+        refreshToken(refreshTokenCallBack);
+      }, (60 * 1000));
+    }
   }
 
   return(
     <BrowserRouter>
       <div className = "App">
-        <Nav userId={userId}/>
+        <Nav userNm={userNm}/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login loginCallBack={loginCallBack}/>} />
