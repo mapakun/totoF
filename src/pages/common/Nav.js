@@ -8,6 +8,7 @@ function Nav(props) {
         <div>
             <Link to={'/'}>Home</Link>
             <Link to={'/login'}>Login</Link>
+            <Link to={'/GameInfo'}>게임정보</Link>
             <div>{userNm ? userNm + "님으로 사용중" : "로그인 후 사용바랍니다."}</div>
         </div>
     );
