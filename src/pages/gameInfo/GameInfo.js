@@ -1,9 +1,23 @@
 import { useState } from "react";
 import Modal from '../../components/modal/modal.js';
+import * as common from 'api/axios/axiosFunc.js';
 
 function GameInfo()
 {
-
+  // 공용axios 테스트 start
+    const liveScoreTest = () => {
+      console.log('라이브스코어테스트');
+      //inputId : "크앙" , inputPw : "그앙"
+      const test = {inputId:'크앙',inputPw:'그앙'};
+      common.commonAxios("post","/gameinfo/test",test,testCallBack);
+      }
+      function testCallBack(res)
+      {
+        console.log("콜백함수 테스트 입니다 잘오면 반응합니다.");
+        console.log(res);
+      }
+  // 공용axios 테스트 end
+    
 
     //모달관련 useState & function
     const [ModalOpen, setModalOpen] = useState(false);
@@ -18,7 +32,7 @@ function GameInfo()
 
     return(
         <div>
-            <div id="infoTest">경기정보 테스트</div>
+            <div id="infoTest" onClick={liveScoreTest}>경기정보 테스트</div>
 
             {/* 모달관련 정보 */}
             <div id="modalTest" onClick={openModal}>모달테스트</div>
