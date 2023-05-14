@@ -5,8 +5,7 @@ import NotFound from './pages/common/NotFound.js';
 import Home from './pages/common/Home.js';
 import Login from './pages/common/Login.js';
 import AuthRoute from './components/common/AuthRoute.js'
-
-import GameInfo from './pages/gameInfo/GameInfo.js';
+import GameInfo from './pages/gameinfo/GameInfo.js';
 
 import { useState,useEffect } from 'react';
 import { refreshToken } from './utils.js';
