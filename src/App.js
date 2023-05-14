@@ -45,7 +45,8 @@ const App = () => {
         refreshToken(refreshTokenCallBack);
       }, (60 * 1000));
     }else{                                  //리프레시토큰 or 로그인만료
-      window.sessionStorage.clear()         //세션스토리지 정리    
+      window.sessionStorage.clear()         //세션스토리지 정리
+      window.alert("세션이 만료되었습니다.");  
     }
 
   }

@@ -12,7 +12,7 @@ function testCallBack(res)
         console.log("콜백함수 테스트 입니다 잘오면 반응합니다.");
         console.log(res);
       }
-      
+
 common.commonAxios("post","/gameinfo/test",test,testCallBack);
 */
 export function commonAxios(type,url,reqData,callBack)
@@ -22,8 +22,10 @@ export function commonAxios(type,url,reqData,callBack)
     switch (reqType)
     {
         case 'post':
-            axios.post(url,
-                reqData
+            axios.post(
+                url,
+                reqData,
+                { withCredentials: true }
             )
             .then((res) =>{
                 console.log(res);

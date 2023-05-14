@@ -27,7 +27,8 @@ const Login = (props) => {
       {
         inputId : inputId,
         inputPw : inputPw
-      })
+      },
+      { withCredentials: true })
       .then((res) => {
         console.log(res);
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;

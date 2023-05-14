@@ -8,7 +8,8 @@ export const refreshToken = function(refreshTokenCallBack)
         "/common/refreshToken",
         {
           inputId : window.sessionStorage.getItem("userId")
-        })
+        },
+        { withCredentials: true })
         .then((res) => {
           console.log(res.data);
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.token;
