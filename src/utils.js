@@ -4,6 +4,9 @@ import axios from "axios";
 // 로그인기능 구현 ㅡ 공통함수 엑세스토큰 재발급
 export const refreshToken = function(refreshTokenCallBack)
 {
+  if(window.sessionStorage.getItem("userId") === null)
+    return;
+
     axios.post(
         "/common/refreshToken",
         {
